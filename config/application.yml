@@ -1,0 +1,27 @@
+#Este fichero de configuración llevará a cabo configuraciones comunes que se repartirán entre todos los archivos
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    register-with-eureka: true
+    fetch-registry: true
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8080/uaa/user/current
+      token-info-uri: http://localhost:8080/uaa/oauth/check_token
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000

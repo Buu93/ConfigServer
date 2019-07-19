@@ -1,0 +1,23 @@
+server:
+  port: 8761 #el puerto predeterminado que se usa para los servidores eureka
+
+spring:
+  application:
+    name: eureka
+  output:
+    ansi:
+      enabled: always
+
+eureka:
+  instance: #Descubrir las instancias creadas con puerto aleatorios
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: false # no presentar en el dasboar de eureka
+    fetch-registry: false
+
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF

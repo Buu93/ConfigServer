@@ -1,0 +1,29 @@
+server:
+  port: 8284
+  address: 192.168.26.71
+
+spring:
+  application:
+    name: zuulServer
+
+zuul:
+  routes:
+    file-management:
+      api: /officedepot-services/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+zuulServer:
+  ribbon:
+    listOfServers: localhost:8181,localhost:8283,localhost:8184
+    ServerListRefreshInterval: 15000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream, info, health
+
